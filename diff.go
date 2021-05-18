@@ -79,11 +79,11 @@ func (b *patchBuilder) AddNewline(op diffmatchpatch.Operation) {
 		b.newLineBuffer.Reset()
 	} else {
 		if op == diffmatchpatch.DiffDelete || op == diffmatchpatch.DiffEqual {
-			b.oldLines = append(b.oldLines, "-"+oldLine)
+			b.oldLines = append(b.oldLines, "\033[1;31m"+"-"+oldLine+"\u001B[0m")
 			b.oldLineBuffer.Reset()
 		}
 		if op == diffmatchpatch.DiffInsert || op == diffmatchpatch.DiffEqual {
-			b.newLines = append(b.newLines, "+"+newLine)
+			b.newLines = append(b.newLines, "\033[1;32m"+"+"+newLine+"\033[0m")
 			b.newLineBuffer.Reset()
 		}
 	}
